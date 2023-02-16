@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const getCoin = (coinId: string) => {
+export const useGetCoin = (coinId: string) => {
   const [coinData, setCoinData] = useState<null | any>(null);
 
   useEffect(() => {

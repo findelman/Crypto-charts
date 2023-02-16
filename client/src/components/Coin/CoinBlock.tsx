@@ -2,7 +2,7 @@ import { getActiveToken, usesetActiveToken } from "@/store/token";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { getCoin } from "./getCoin";
+import { useGetCoin } from "./getCoin";
 
 const Wrapper = styled.div<{ isActive?: boolean }>`
   cursor: pointer;
@@ -16,7 +16,7 @@ const Wrapper = styled.div<{ isActive?: boolean }>`
 export const CoinBlock = ({ coinId }: { coinId: string }) => {
   const activeToken = useSelector(getActiveToken);
 
-  const coinData = getCoin(coinId);
+  const coinData = useGetCoin(coinId);
   const changeCoin = usesetActiveToken();
 
   return (
@@ -39,3 +39,7 @@ export const CoinBlock = ({ coinId }: { coinId: string }) => {
     </>
   );
 };
+function getCoin(coinId: string) {
+  throw new Error("Function not implemented.");
+}
+
