@@ -1,6 +1,6 @@
+import { Container } from "@/components/Containers";
 import Head from "next/head";
 import styled from "styled-components";
-import { Container } from "./Container";
 
 const Wrapper = styled.div``;
 
