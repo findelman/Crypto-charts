@@ -17,7 +17,7 @@ export const getActiveToken = (state: any) => state.activeToken?.token;
 
 export default activeTokenSlice.reducer;
 
-export const usesetActiveToken = () => {
+export const useSetActiveToken = () => {
   const dispatch = useDispatch();
 
   const _setActiveToken = (coinId: string) => {

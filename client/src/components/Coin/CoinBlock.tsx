@@ -1,4 +1,4 @@
-import { getActiveToken, usesetActiveToken } from "@/store/token";
+import { getActiveToken, useSetActiveToken } from "@/store/token";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -17,7 +17,7 @@ export const CoinBlock = ({ coinId }: { coinId: string }) => {
   const activeToken = useSelector(getActiveToken);
 
   const coinData = useGetCoin(coinId);
-  const changeCoin = usesetActiveToken();
+  const changeCoin = useSetActiveToken();
 
   return (
     <>
