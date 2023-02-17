@@ -3,18 +3,16 @@ import useSWR from "swr";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-import { getActiveToken, useSetUser, useUser } from "@/store/user";
-import { useSelector } from "react-redux";
-
+import { useUser } from "@/store/user";
+import { ChartOptions } from "chart.js";
 import { fetcher } from "@/api/fetcher";
 import styled from "styled-components";
-import { useGetCurrencies } from "@/hooks/useGetCurrencies";
 import { ChangeCurrency } from "../ChangeCurrency";
 import { FlexAiC } from "@/styles/Constructors";
 
 Chart.register(CategoryScale);
 
-const options = {
+const options: ChartOptions = {
   plugins: {
     legend: {
       display: false,
@@ -24,13 +22,6 @@ const options = {
     mode: "index",
     intersect: false,
     axis: "x",
-    backgroundColor: "black",
-    hover: {
-      mode: "nearest",
-      intersect: true,
-      axis: "x",
-      backgroundColor: "black",
-    },
   },
 };
 
