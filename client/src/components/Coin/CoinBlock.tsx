@@ -1,4 +1,5 @@
-import { getActiveToken, useSetActiveToken } from "@/store/token";
+import { getActiveToken, useSetUser, useUser } from "@/store/user";
+import { FlexAiC } from "@/styles/Constructors";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -13,11 +14,22 @@ const Wrapper = styled.div<{ isActive?: boolean }>`
   color: ${({ isActive }) => (isActive ? "white" : "black")};
 `;
 
+const Header = styled(FlexAiC)`
+  margin-bottom: 10px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  h2 {
+    margin-left: 5px;
+  }
+`;
+
 export const CoinBlock = ({ coinId }: { coinId: string }) => {
-  const activeToken = useSelector(getActiveToken);
+  const { activeToken, currency } = useUser();
 
   const coinData = useGetCoin(coinId);
-  const changeCoin = useSetActiveToken();
+  const { _setActiveToken } = useSetUser();
 
   return (
     <>
@@ -25,13 +37,15 @@ export const CoinBlock = ({ coinId }: { coinId: string }) => {
         <Wrapper
           isActive={coinData.name.toLowerCase() === activeToken}
           onClick={() => {
-            changeCoin(coinData.name.toLowerCase());
+            _setActiveToken(coinData.name.toLowerCase());
           }}
         >
-          <h2>{coinData.name}</h2>
-          <div>Symbol: {coinData.symbol}</div>
-          <div>Price: ${coinData.market_data.current_price.usd}</div>
-          <div>Market Cap: ${coinData.market_data.market_cap.usd}</div>
+          <Header>
+            <img src={coinData.image.small} alt="" />
+            <h2>{coinData.name}</h2>
+          </Header>
+          <div>Price: {currency.toUpperCase()} {coinData.market_data.current_price[currency]}</div>
+          <div>Market Cap: {currency.toUpperCase()} {coinData.market_data.market_cap[currency]}</div>
         </Wrapper>
       ) : (
         "Loading..."
@@ -39,7 +53,3 @@ export const CoinBlock = ({ coinId }: { coinId: string }) => {
     </>
   );
 };
-function getCoin(coinId: string) {
-  throw new Error("Function not implemented.");
-}
-

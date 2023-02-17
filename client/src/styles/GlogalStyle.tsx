@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlogalStyle = createGlobalStyle`
 * {
   padding: 0;
+  font-family: monospace;
   margin: 0;
   box-sizing: border-box;
   list-style: none;
@@ -11,4 +12,7 @@ export const GlogalStyle = createGlobalStyle`
   border: unset;
 }
 
+button {
+  cursor: pointer;
+}
 `;

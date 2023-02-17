@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import activeToken from "./token";
+import user from "./user";
 
 const store = configureStore({
   reducer: {
-    activeToken,
+    user,
   },
 });
 
