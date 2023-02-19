@@ -32,11 +32,11 @@ const Wrapper = styled.div`
 export const LineChart = () => {
   const { activeToken, currency } = useUser();
   const { data } = useSWR(
-    `https://api.coingecko.com/api/v3/coins/${activeToken}/market_chart?vs_currency=${currency}&days=7&interval=daily`,
+    `https://api.coingecko.com/api/v3/coins/${activeToken}/market_chart?vs_currency=${currency}&days=8&interval=daily`,
     fetcher
   );
 
-  console.log(data);
+  console.log(data?.prices);
 
   return (
     <Wrapper>
@@ -48,7 +48,7 @@ export const LineChart = () => {
         <Line
           options={options}
           data={{
-            labels: data?.prices?.map((priceData: any) => {
+            labels: data?.prices?.slice(0, -1).map((priceData: any) => {
               const date = new Date(priceData[0]);
               console.log(date);
               return `${
@@ -57,7 +57,7 @@ export const LineChart = () => {
             }),
             datasets: [
               {
-                data: data?.prices?.map((priceData: any) => priceData[1]),
+                data: data?.prices?.slice(0, -1).map((priceData: any) => priceData[1]),
                 fill: true,
                 borderColor: "rgb(75, 192, 192)",
                 backgroundColor: "rgba(75, 192, 192, 0.2)",
