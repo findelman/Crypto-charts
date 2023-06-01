@@ -5,12 +5,17 @@ export const useGetCoin = (coinId: string) => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${coinId}`
-      );
-      const data = await response.json();
-      console.log(data)
-      setCoinData(data);
+      try {
+        const response = await fetch(
+          `https://api.coingecko.com/api/v3/coins/${coinId}`
+        );
+        const data = await response.json();
+        console.log(data)
+        setCoinData(data);
+      }
+      catch (err) {
+        console.log(err)
+      }
     })();
   }, [coinId]);
 
