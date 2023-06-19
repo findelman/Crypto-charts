@@ -24,11 +24,57 @@ const Header = styled(FlexAiC)`
   }
 `;
 
-export const CoinBlock = ({ coinId }: { coinId: string }) => {
+// export const CoinBlock = ({ coinId }: { coinId: string }) => {
+//   const { activeToken, currency } = useUser();
+
+//   const { coinData, isLoading } = useGetCoin(coinId);
+//   const { _setActiveToken } = useSetUser();
+
+//   return (
+//     <>
+//       {isLoading
+//         ? "Loading..."
+//         : coinData && (
+//             <Wrapper
+//               isActive={coinData.name.toLowerCase() === activeToken}
+//               onClick={() => {
+//                 _setActiveToken(coinData.name.toLowerCase());
+//               }}
+//             >
+//               <Header>
+//                 <img src={coinData.image.small} alt="" />
+//                 <h2>{coinData.name}</h2>
+//               </Header>
+//               <div>
+//                 Price: {currency.toUpperCase()}{" "}
+//                 {coinData.market_data.current_price[currency]}
+//               </div>
+//               <div>
+//                 Market Cap: {currency.toUpperCase()}{" "}
+//                 {coinData.market_data.market_cap[currency]}
+//               </div>
+//             </Wrapper>
+//           )}
+//     </>
+//   );
+// };
+
+export const CoinBlock = ({
+  coinId,
+  searchResult,
+}: {
+  coinId?: string;
+  searchResult?: any;
+}) => {
   const { activeToken, currency } = useUser();
 
-  const { coinData, isLoading } = useGetCoin(coinId);
   const { _setActiveToken } = useSetUser();
+
+  const { coinData, isLoading } = coinId
+    ? useGetCoin(coinId)
+    : { coinData: searchResult, isLoading: false };
+
+  const coinImage = coinId ? coinData?.image.small : coinData.image;
 
   return (
     <>
@@ -42,16 +88,14 @@ export const CoinBlock = ({ coinId }: { coinId: string }) => {
               }}
             >
               <Header>
-                <img src={coinData.image.small} alt="" />
+                <img src={coinImage} alt="" />
                 <h2>{coinData.name}</h2>
               </Header>
               <div>
-                Price: {currency.toUpperCase()}{" "}
-                {coinData.market_data.current_price[currency]}
+                Price: {currency.toUpperCase()} {coinData.current_price}
               </div>
               <div>
-                Market Cap: {currency.toUpperCase()}{" "}
-                {coinData.market_data.market_cap[currency]}
+                Market Cap: {currency.toUpperCase()} {coinData.market_cap}
               </div>
             </Wrapper>
           )}

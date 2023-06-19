@@ -8,11 +8,14 @@ const Wrapper = styled.div`
   padding: 2%;
 `;
 
+
 export const ChartWrapper = () => {
   return (
-    <Wrapper>
-      <LineChart />
-      <CoinList />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <LineChart />
+        <CoinList />
+      </Wrapper>
+    </>
   );
 };
