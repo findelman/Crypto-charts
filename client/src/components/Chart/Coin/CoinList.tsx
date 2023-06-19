@@ -362,7 +362,7 @@ const SearchResults = ({ searchResults }) => {
           ))}
         </SearchResultWrapper>
       ) : (
-        <p>'...'</p>
+        <p>...</p>
       )}
     </div>
   );
