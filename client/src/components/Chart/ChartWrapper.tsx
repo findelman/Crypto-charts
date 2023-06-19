@@ -1,5 +1,5 @@
-import { LineChart } from "@/components/Charts/LineChart";
-import { CoinList } from "@/components/Coin/CoinList";
+import { LineChart } from "@/components/Chart/LineChart";
+import { CoinList } from "@/components/Chart/Coin/CoinList";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   padding: 2%;
 `;
 
-export const Container = () => {
+export const ChartWrapper = () => {
   return (
     <Wrapper>
       <LineChart />

@@ -7,7 +7,7 @@ import { useUser } from "@/store/user";
 import { ChartOptions } from "chart.js";
 import { fetcher } from "@/api/fetcher";
 import styled from "styled-components";
-import { ChangeCurrency } from "../ChangeCurrency";
+import { ChangeCurrency } from "./ChangeCurrency";
 import { FlexAiC } from "@/styles/Constructors";
 
 Chart.register(CategoryScale);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CoinBlock } from "./CoinBlock";
 
-const Coins = ["bitcoin", "ethereum", "shibacash"];
+const Coins = ["bitcoin", "ethereum", "shibacash", "cardano"];
 
 const Wrapper = styled.div`
   display: flex;
