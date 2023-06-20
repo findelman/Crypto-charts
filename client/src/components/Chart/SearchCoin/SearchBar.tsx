@@ -6,8 +6,8 @@ const SearchInput = styled.input`
   font-size: 20px;
 `;
 
-export const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+export const SearchBar = ({ onSearch,searchTerm,setSearchTerm }) => {
+
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);

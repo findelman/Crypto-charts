@@ -7,7 +7,8 @@ export const  SearchBox = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState("");
-  
+    const [searchTerm, setSearchTerm] = useState("");
+
     const searchCoins = async (searchTerm) => {
       setIsLoading(true);
       setError("");
@@ -43,13 +44,13 @@ export const  SearchBox = () => {
   
     return (
       <div>
-        <SearchBar onSearch={debouncedSearchCoins} />
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={debouncedSearchCoins} />
   
         {isLoading && <div>Loading...</div>}
   
         {error && <div>{error}</div>}
   
-        {!isLoading && !error && <SearchResults searchResults={searchResults} />}
+        {!isLoading && !error && searchTerm.length !== 0 && <SearchResults searchResults={searchResults} />}
       </div>
     );
   };
