@@ -1,4 +1,5 @@
 import { ChartWrapper } from "@/components/Chart/ChartWrapper";
+import { CryptoTable } from "@/components/CryptoTable";
 import { CryptoList } from "@/components/PopularList/CryptoList";
 import Head from "next/head";
 import styled from "styled-components";
@@ -6,22 +7,7 @@ import styled from "styled-components";
 const Wrapper = styled.div``;
 
 export default function Home({ cryptoList }: any) {
-  const testCryptoList = [
-    {
-      id: "bitcoin",
-      name: "Bitcoin",
-      current_price: 50000,
-      market_cap: 100000000,
-    },
-    {
-      id: "ethereum",
-      name: "Ethereum",
-      current_price: 3000,
-      market_cap: 50000000,
-    },
-  ];
-
-  console.log(cryptoList)
+  console.log(cryptoList);
   return (
     <>
       <Head>
@@ -30,6 +16,7 @@ export default function Home({ cryptoList }: any) {
       <Wrapper>
         <ChartWrapper />
         <CryptoList cryptoList={cryptoList} />
+        <CryptoTable cryptoList={cryptoList} />
       </Wrapper>
     </>
   );

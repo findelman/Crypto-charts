@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CoinBlock } from "./CoinBlock";
+import { CoinBlock } from "../Coin/CoinBlock";
 
 const SearchResultWrapper = styled.div`
   position: absolute;
