@@ -2,19 +2,20 @@ import { debounce } from "@/utils/debonce";
 import { useState } from "react";
 import { SearchBar } from "./SearchBar";
 import { SearchResults } from "./SearchResult";
+import { useUser } from "@/store/user";
 
 export const  SearchBox = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
-
+    const {  currency } = useUser();
     const searchCoins = async (searchTerm) => {
       setIsLoading(true);
       setError("");
       try {
         const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h&name=${searchTerm}`
+          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h&name=${searchTerm}`
         );
         const data = await response.json();
   

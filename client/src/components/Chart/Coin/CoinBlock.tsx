@@ -35,11 +35,13 @@ export const CoinBlock = ({
 
   const { _setActiveToken } = useSetUser();
 
-  const { coinData, isLoading } = coinId
-    ? useGetCoin(coinId)
-    : { coinData: searchResult, isLoading: false };
+  const { coinData, isLoading } = useGetCoin(
+    coinId || (searchResult && searchResult.id)
+  );
 
-  const coinImage = coinId ? coinData?.image.small : coinData.image;
+  const coinImage = coinData?.image.small;
+  const coinPrice = coinData?.market_data?.current_price[currency];
+  const coinMarketCap = coinData?.market_data?.market_cap[currency];
 
   return (
     <>
@@ -54,14 +56,12 @@ export const CoinBlock = ({
             >
               <Header>
                 <img src={coinImage} alt="" />
-                <h2>{coinData.name}</h2>
+                <h2>
+                  {coinData.name} / {currency.toUpperCase()}
+                </h2>
               </Header>
-              <div>
-                Price: {currency.toUpperCase()} {coinData.current_price}
-              </div>
-              <div>
-                Market Cap: {currency.toUpperCase()} {coinData.market_cap}
-              </div>
+              <div>Price: {coinPrice}</div>
+              <div>Market Cap: {coinMarketCap}</div>
             </Wrapper>
           )}
     </>

@@ -8,6 +8,10 @@ const SearchResultWrapper = styled.div`
   width: 100%;
   height: 73vh;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 `;
 
 export const SearchResults = ({ searchResults }) => {

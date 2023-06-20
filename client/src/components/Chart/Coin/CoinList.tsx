@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { CoinBlock } from "./CoinBlock";
 import { SearchBox } from "../SearchCoin/SearchBox";
 
-const Coins = ["bitcoin", "ethereum", "shibacash", "cardano",'solana'];
+const COINS = ["bitcoin", "ethereum", "shibacash", "cardano",'solana'];
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,13 +11,11 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-
-
 export const CoinList = () => {
   return (
     <Wrapper>
       <SearchBox />
-      {Coins.map((item) => {
+      {COINS.map((item) => {
         return <CoinBlock key={item} coinId={item} />;
       })}
     </Wrapper>
