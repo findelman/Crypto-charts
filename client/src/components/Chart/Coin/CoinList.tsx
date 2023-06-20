@@ -332,14 +332,12 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div>
-      <SearchInput
-        type="text"
-        placeholder="Search coins..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-    </div>
+    <SearchInput
+      type="text"
+      placeholder="Search coins..."
+      value={searchTerm}
+      onChange={handleSearch}
+    />
   );
 };
 
@@ -361,9 +359,7 @@ const SearchResults = ({ searchResults }) => {
             <CoinBlock key={coin.id} searchResult={coin} />
           ))}
         </SearchResultWrapper>
-      ) : (
-        <p>...</p>
-      )}
+      ) : null}
     </div>
   );
 };
@@ -429,5 +425,3 @@ export const CoinList = () => {
     </Wrapper>
   );
 };
-
-// [

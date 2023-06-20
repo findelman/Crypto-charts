@@ -9,6 +9,8 @@ import { fetcher } from "@/api/fetcher";
 import styled from "styled-components";
 import { ChangeCurrency } from "./ChangeCurrency";
 import { FlexAiC } from "@/styles/Constructors";
+import { useState, useEffect } from "react";
+import { Loader } from "../Common/Lodaer";
 
 Chart.register(CategoryScale);
 
@@ -31,12 +33,18 @@ const Wrapper = styled.div`
 
 export const LineChart = () => {
   const { activeToken, currency } = useUser();
-  const { data } = useSWR(
+  const { data, isLoading } = useSWR(
     `https://api.coingecko.com/api/v3/coins/${activeToken}/market_chart?vs_currency=${currency}&days=8&interval=daily`,
     fetcher
   );
 
+  const [isLoadingData, setIsLoadingData] = useState<boolean>(true);
+
   console.log(data?.prices);
+
+  useEffect(() => {
+    setIsLoadingData(isLoading);
+  }, [isLoading]);
 
   return (
     <Wrapper>
@@ -44,27 +52,33 @@ export const LineChart = () => {
         <h2>{activeToken.toUpperCase()} </h2>
         <ChangeCurrency />
       </FlexAiC>
-      {data && (
-        <Line
-          options={options}
-          data={{
-            labels: data?.prices?.slice(0, -1).map((priceData: any) => {
-              const date = new Date(priceData[0]);
-              console.log(date);
-              return `${
-                date.getMonth() + 1
-              }/${date.getDate()}/${date.getFullYear()}`;
-            }),
-            datasets: [
-              {
-                data: data?.prices?.slice(0, -1).map((priceData: any) => priceData[1]),
-                fill: true,
-                borderColor: "rgb(75, 192, 192)",
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-              },
-            ],
-          }}
-        />
+      {isLoadingData ? (
+        <Loader />
+      ) : (
+        data && (
+          <Line
+            options={options}
+            data={{
+              labels: data?.prices?.slice(0, -1).map((priceData: any) => {
+                const date = new Date(priceData[0]);
+                console.log(date);
+                return `${
+                  date.getMonth() + 1
+                }/${date.getDate()}/${date.getFullYear()}`;
+              }),
+              datasets: [
+                {
+                  data: data?.prices
+                    ?.slice(0, -1)
+                    .map((priceData: any) => priceData[1]),
+                  fill: true,
+                  borderColor: "rgb(75, 192, 192)",
+                  backgroundColor: "rgba(75, 192, 192, 0.2)",
+                },
+              ],
+            }}
+          />
+        )
       )}
     </Wrapper>
   );
