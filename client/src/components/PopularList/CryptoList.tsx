@@ -11,22 +11,21 @@ const marqueeAnimation = keyframes`
 
 const CryptoListWrapper = styled.div`
   display: flex;
-  overflow-x: hidden;
-  width: 100%;
+  overflow: hidden;
   padding: 20px;
 `;
 
 const CryptoMarquee = styled.div`
   display: flex;
-  width: fit-content;
-  animation: ${marqueeAnimation} 90s linear infinite;
+  width: 100%;
+  animation: ${marqueeAnimation} 10s linear infinite;
   &:hover {
     animation-play-state: paused;
   }
 `;
 
 const CryptoCard = styled.div`
-  width: 250px;
+    min-width: 250px;
   margin-right: 20px;
   padding: 10px;
   border: 1px solid #ccc;
