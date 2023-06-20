@@ -18,8 +18,9 @@ const Wrapper = styled.div`
 const DropDown = styled.div`
   padding: 10px;
   border-radius: 10px;
+  z-index: 10000;
   border: 1px solid black;
-  width: 100%;
+  width: 73vw;
   gap: 5px;
   background: white;
   position: absolute;

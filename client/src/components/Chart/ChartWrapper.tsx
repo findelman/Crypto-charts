@@ -6,8 +6,8 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   padding: 2%;
+  gap: 30px;
 `;
-
 
 export const ChartWrapper = () => {
   return (
